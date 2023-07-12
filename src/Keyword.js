@@ -1,0 +1,20 @@
+export default function Keyword({ $target, initialState, onChangeKeyword, onEnter }) {
+	const $keyword = document.createElement("input");
+	$keyword.className = "Keyword";
+	$target.appendChild($keyword);
+
+	this.state = initialState;
+
+	this.setState = nextState => {
+		this.state = nextState;
+		$keyword.value = this.state.value;
+	};
+
+	$keyword.addEventListener("keyup", e => {
+		if (e.key === "Enter") {
+			onEnter();
+		} else {
+			onChangeKeyword(e.target.value);
+		}
+	});
+}
